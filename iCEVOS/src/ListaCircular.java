@@ -96,7 +96,7 @@ public class ListaCircular {
         //remove a cauda
         auxNode2 = auxNode1.getNextNode();
         tail = auxNode2;
-
+        size--;
         return auxNode1;// Retorna a cauda;
 
     }
