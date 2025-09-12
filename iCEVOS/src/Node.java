@@ -4,15 +4,15 @@ public class Node {
     private Node nextNode;
     
     //Construtor
-    public Node(Processo element) {
+    public Node(Object element) {
         this.element = element;
         this.nextNode = null;
     }
     //Getters e Setters
-    public Processo getElement() {
+    public Object getElement() {
         return element;
     }
-    public void setElement(Processo element) {
+    public void setElement(Object element) {
         this.element = element;
     }
     public Node getNextNode() {
