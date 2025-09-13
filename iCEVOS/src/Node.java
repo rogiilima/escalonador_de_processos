@@ -1,18 +1,18 @@
 public class Node {
     //Atributos
-    private Object element;
+    private EstruturaProcesso element;
     private Node nextNode;
     
     //Construtor
-    public Node(Object element) {
+    public Node(EstruturaProcesso element) {
         this.element = element;
         this.nextNode = null;
     }
     //Getters e Setters
-    public Object getElement() {
+    public EstruturaProcesso getElement() {
         return element;
     }
-    public void setElement(Object element) {
+    public void setElement(EstruturaProcesso element) {
         this.element = element;
     }
     public Node getNextNode() {
