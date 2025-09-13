@@ -5,6 +5,12 @@ public class EstruturaProcesso {
     private int prioridade; // 1 para alta, 2 para média e 3 para baixa
     private int ciclos_necessarios;
     private String recurso_necessario; // CPU, IO, etc
+    
+    @Override
+    public String toString(){
+        return null;   
+    }
+    
     //Construtor
     public EstruturaProcesso(int id, String nome, int prioridade, int ciclos_necessarios, String recurso_necessario) {
         this.id = id;
