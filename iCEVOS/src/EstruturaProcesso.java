@@ -6,9 +6,9 @@ public class EstruturaProcesso {
     private int ciclos_necessarios;
     private String recurso_necessario; // CPU, IO, etc
     
-    @Override
+    @Override // adicionando toString sobrescrevendo o metódo e retornando o id + nome + prioridade + ciclos necessários
     public String toString(){
-        return null;   
+        return "P ("+ id +", "+ nome +", "+ prioridade+ ", "+ ciclos_necessarios;
     }
     
     //Construtor
