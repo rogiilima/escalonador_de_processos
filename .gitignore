@@ -1,3 +1,6 @@
 trabalho P1.pdf
 .vscode
 *.class
+.idea
+*.xml
+*.iml
