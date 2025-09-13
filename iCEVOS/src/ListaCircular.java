@@ -1,6 +1,6 @@
 public class ListaCircular {
     protected Node tail;
-    protected long size = 0;
+    protected int size = 0;
 
     //Verifica se a lista está vazia
     public boolean listaVazia(){
@@ -9,24 +9,12 @@ public class ListaCircular {
         }
         return true; 
     }
-
-    public long getTamanho(){
-        if (listaVazia()) {
-            // ---Jogar uma exception de lista vazia ---
-            System.out.println("A lista está vazia!");
-            return 0;
-        }
-        Node auxNode = tail.getNextNode();
-        long cont = 0;
-        do {
-            //IMPLEMENTAR ALGUMA LÓGICA COMO: Pegar o nó atual ou imprimir no console
-            cont++;
-            auxNode = auxNode.getNextNode();
-        } while (auxNode !=tail);
-        return cont;
+    
+    public int getSize(){
+        return this.size;
     }
 
-    public void inserirListaVazia(Object objeto){
+    private void inserirListaVazia(EstruturaProcesso objeto){
         Node node = new Node(objeto);
         if (listaVazia()) { //Se a lista estiver vazia
             tail = node; //Define a calda
@@ -36,7 +24,7 @@ public class ListaCircular {
         }
     }
 
-    public void inserirNoFim(Object objeto){
+    public void inserirNoFim(EstruturaProcesso objeto){
         //IF guard rail
         if (listaVazia()) {
             inserirListaVazia(objeto);
@@ -51,7 +39,7 @@ public class ListaCircular {
         size++;
     }
 
-    public Node removeListaUnica(){
+    private EstruturaProcesso removeListaUnica(){
         //Jogar exception caso a lista estiver vazia
         if (listaVazia()) {
             // -- Implementar exception
@@ -59,7 +47,7 @@ public class ListaCircular {
             return null;
         }
         if (tail.getNextNode() == tail) {
-            Node rtnNode = tail;
+            EstruturaProcesso rtnNode = tail.getElement(); // Pega o elemento da cauda para retornar
             tail = null;
             size--;
             return rtnNode;
@@ -69,7 +57,7 @@ public class ListaCircular {
             return null;
         }
     }
-    public Node removeCabeca(){
+    public EstruturaProcesso removeCabeca(){
        if (listaVazia()) {
             // -- Implementar exception
             System.out.println("A lista está vazia!");
@@ -78,14 +66,15 @@ public class ListaCircular {
         if (size == 1) {
             return removeListaUnica();
         }
-        Node rtnNode = tail.getNextNode(); // Pega o no para retornar na funcao
+        EstruturaProcesso rtnNode = tail.getNextNode().getElement(); // Pega o elemento do proximo nó para retornar na funcao
         
         tail.setNextNode(tail.getNextNode().getNextNode()); // tira a referencia da cabeca na tail
         size--;
+
         return rtnNode;
     }
 
-    public Node removeCauda(){
+    public EstruturaProcesso removeCauda(){
         if (listaVazia()) {
             // -- Implementar exception
             System.out.println("A lista está vazia!");
@@ -103,13 +92,12 @@ public class ListaCircular {
             auxNode = auxNode.getNextNode();
         }
 
-        Node rtnNode = tail;
+        EstruturaProcesso rtnNode = tail.getElement();
         //remove a cauda
         auxNode.setNextNode(tail.getNextNode());//continua a lista
 
         tail = auxNode;
         
-        rtnNode.setNextNode(null);// Garantir que o GC apague ele depois
         size--;
         return rtnNode;// Retorna a cauda;
 
