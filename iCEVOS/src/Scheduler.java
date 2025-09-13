@@ -10,7 +10,7 @@ public class Scheduler {
     private int contadorAlta = 0;
     private int ciclo = 0;
 
-    // Inserir processo na fila correta, geralmente é o padrão
+    // Inserir processo na fila correta
     public void inserirProcesso(EstruturaProcesso p) {
         switch (p.getPrioridade()) {
             case 1 : 
@@ -35,6 +35,7 @@ public class Scheduler {
             System.out.println("Desbloqueando " + desbloqueado.getNome());
             inserirProcesso(desbloqueado);
         }
+
         EstruturaProcesso atual = null;
         if (contadorAlta == 5) { // se o contadorAlta for igual a 5, remove cabeça de lista media, executando o processo
         atual = listaMedia.removeCabeca();
@@ -43,10 +44,34 @@ public class Scheduler {
         atual = listaBaixa.removeCabeca();
         } 
     } 
-    if (atual != null) { // faz a anti-inanição do scheduler
+        if (atual != null) { // faz a anti-inanição do scheduler
                 System.out.println("Anti-inanição aplicada! Executando " + atual.getNome());
                 contadorAlta = 0;
                 return;
             }
+        
+    
+        if(atual == null){
+
+            // se lista de alta prioridade diferente de vazia, remova o processo e aumente o contador, vai ser repitido para todas as listas
+            if(!listaAlta.listaVazia()){ 
+                atual = listaAlta.removeCabeca();
+                contadorAlta++;
+            }else if(!listaMedia.listaVazia()){
+                atual = listaMedia.removeCabeca();
+                contadorAlta = 0;
+            }else if(!listaBaixa.listaVazia()){
+                atual = listaBaixa.removeCabeca();
+                contadorAlta = 0;
+            }
+        }
+        
+        // se mesmo depois de passar pela execução, não foi encontrado nada, entra no guard rails
+        if(atual == null){ 
+            System.out.println("Não foi encontrado nenhum processo nesse ciclo!");
+            return; // sai do metódo
+        }
+        
+
     }
 }
