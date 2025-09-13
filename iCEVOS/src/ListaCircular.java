@@ -10,17 +10,20 @@ public class ListaCircular {
         return true; 
     }
 
-    public void percorrerLista(){
+    public long getTamanho(){
         if (listaVazia()) {
             // ---Jogar uma exception de lista vazia ---
             System.out.println("A lista está vazia!");
-            return;
+            return 0;
         }
         Node auxNode = tail.getNextNode();
+        long cont = 0;
         do {
             //IMPLEMENTAR ALGUMA LÓGICA COMO: Pegar o nó atual ou imprimir no console
+            cont++;
             auxNode = auxNode.getNextNode();
         } while (auxNode !=tail);
+        return cont;
     }
 
     public void inserirListaVazia(Object objeto){
@@ -96,7 +99,7 @@ public class ListaCircular {
 
         Node auxNode = tail.getNextNode();//Nós auxiliares, começando pela "head"
         // Percorre até encontrar o penultimo nó
-        while (auxNode.getNextNode() != tail);{ 
+        while (auxNode.getNextNode() != tail){ 
             auxNode = auxNode.getNextNode();
         }
 
