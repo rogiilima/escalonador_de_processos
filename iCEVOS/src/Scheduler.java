@@ -95,6 +95,12 @@ public class Scheduler {
             inserirProcesso(p);
         }
     }
-
+    
+    void mostrarFilas(){
+        System.out.println("Fila alta: "+listaAlta.getSize()+" processos");
+        System.out.println("Fila média: "+listaMedia.getSize()+" processos");
+        System.out.println("Fila baixa: "+listaBaixa.getSize()+" processos");
+        System.out.println("Fila bloqueados: "+listaBloqueados.getSize()+" processos");
+    }
   
 }
