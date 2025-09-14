@@ -36,7 +36,8 @@ public class Scheduler {
             inserirProcesso(desbloqueado);
         }
 
-        EstruturaProcesso atual = null;
+        EstruturaProcesso atual = null; // cria um atual, para referenciar as execuções de processos
+
         if (contadorAlta == 5) { // se o contadorAlta for igual a 5, remove cabeça de lista media, executando o processo
         atual = listaMedia.removeCabeca();
         
@@ -47,6 +48,7 @@ public class Scheduler {
         if (atual != null) { // faz a anti-inanição do scheduler
                 System.out.println("Anti-inanição aplicada! Executando " + atual.getNome());
                 contadorAlta = 0;
+                executarProcesso(atual);
                 return;
             }
         
@@ -71,7 +73,28 @@ public class Scheduler {
             System.out.println("Não foi encontrado nenhum processo nesse ciclo!");
             return; // sai do metódo
         }
-        
+
+        if("DISCO".equalsIgnoreCase(atual.getRecurso_necessario())){ // ao chamar equalsIgnoreCase evitamos null pointer exception, no caso de atual for null, e ignora caixa alta ou baixa
+            System.out.println("Processo:"+atual.getNome()+"precisa de DISCO, movendo para bloqueados");
+            listaBloqueados.inserirNoFim(atual);
+            return;
+        }
+
+        executarProcesso(atual);
 
     }
+
+    // faz a execução dos processos, com a aparição de ciclo restantes no terminal e o processo terminou 
+    private void executarProcesso (EstruturaProcesso  p){
+        p.setCiclos_necessarios(p.getCiclos_necessarios() - 1); 
+        System.out.println("Executando "+ p.getNome()  + "(ciclos restantes: " + p.getCiclos_necessarios()+ " )");
+        
+        if(p.getCiclos_necessarios() <= 0){ // processo terminou
+            System.out.println("Processo: " + p.getNome()  + "terminou");
+        } else{
+            inserirProcesso(p);
+        }
+    }
+
+  
 }
