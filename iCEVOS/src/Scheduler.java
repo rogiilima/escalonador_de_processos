@@ -1,16 +1,77 @@
-// classe que gerencia o escalonador de processos e contém a lógica principal
 public class Scheduler {
-    public static void main(String[] args) throws Exception {
-        ListasDeProcessos lista_alta_prioridade = new ListasDeProcessos();
-        ListasDeProcessos lista_media_prioridade = new ListasDeProcessos();
-        ListasDeProcessos lista_baixa_prioridade = new ListasDeProcessos();
-        ListasDeProcessos lista_bloqueados = new ListasDeProcessos();
+    // Três listas encadeadas simples
+    private ListasDeProcessos listaAlta = new ListasDeProcessos();
+    private ListasDeProcessos listaMedia = new ListasDeProcessos();
+    private ListasDeProcessos listaBaixa = new ListasDeProcessos();
 
-        int contador_ciclo_alta_prioridadde = 0;
+    // Lista circular para processos bloqueados, uso apenas para isso
+    private ListaCircular listaBloqueados = new ListaCircular();
 
+    private int contadorAlta = 0;
+    private int ciclo = 0;
+
+    // Inserir processo na fila correta
+    public void inserirProcesso(EstruturaProcesso p) {
+        switch (p.getPrioridade()) {
+            case 1 : 
+            listaAlta.inserirNoFim(p);
+            case 2 :
+             listaMedia.inserirNoFim(p);
+            case 3 :
+             listaBaixa.inserirNoFim(p);
+            default :
+             System.out.println("Prioridade inválida para " + p);
+        }
+    }
+
+
+    public void executarCicloDeCPU() {
+        ciclo++;
+        System.out.println("\n=== Ciclo " + ciclo + " ===");
+
+        // Desbloqueio - pega o mais antigo da lista circular
+        if (!listaBloqueados.listaVazia()) {
+            EstruturaProcesso desbloqueado = listaBloqueados.removeCabeca(); 
+            System.out.println("Desbloqueando " + desbloqueado.getNome());
+            inserirProcesso(desbloqueado);
+        }
+
+        EstruturaProcesso atual = null;
+        if (contadorAlta == 5) { // se o contadorAlta for igual a 5, remove cabeça de lista media, executando o processo
+        atual = listaMedia.removeCabeca();
         
-        //public void executarCicloDeCPU() {
-        // }
+        if (atual == null) { // se não houver lista media tentar de baixa
+        atual = listaBaixa.removeCabeca();
+        } 
+    } 
+        if (atual != null) { // faz a anti-inanição do scheduler
+                System.out.println("Anti-inanição aplicada! Executando " + atual.getNome());
+                contadorAlta = 0;
+                return;
+            }
+        
+    
+        if(atual == null){
+
+            // se lista de alta prioridade diferente de vazia, remova o processo e aumente o contador, vai ser repitido para todas as listas
+            if(!listaAlta.listaVazia()){ 
+                atual = listaAlta.removeCabeca();
+                contadorAlta++;
+            }else if(!listaMedia.listaVazia()){
+                atual = listaMedia.removeCabeca();
+                contadorAlta = 0;
+            }else if(!listaBaixa.listaVazia()){
+                atual = listaBaixa.removeCabeca();
+                contadorAlta = 0;
+            }
+        }
+        
+        // se mesmo depois de passar pela execução, não foi encontrado nada, entra no guard rails
+        if(atual == null){ 
+            System.out.println("Não foi encontrado nenhum processo nesse ciclo!");
+            return; // sai do metódo
+        }
+        
 
     }
 }
