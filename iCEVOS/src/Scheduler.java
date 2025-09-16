@@ -14,11 +14,14 @@ public class Scheduler {
     public void inserirProcesso(EstruturaProcesso p) {
         switch (p.getPrioridade()) {
             case 1 : 
-            listaAlta.inserirNoFim(p);
+             listaAlta.inserirNoFim(p);
+             break;
             case 2 :
              listaMedia.inserirNoFim(p);
+             break;
             case 3 :
              listaBaixa.inserirNoFim(p);
+             break;
             default :
              System.out.println("Prioridade inválida para " + p);
         }
@@ -86,7 +89,7 @@ public class Scheduler {
 
     // faz a execução dos processos, com a aparição de ciclo restantes no terminal e o processo terminou 
     private void executarProcesso (EstruturaProcesso  p){
-        p.setCiclos_necessarios(p.getCiclos_necessarios() - 1); 
+        p.setCiclos_necessarios(p.getCiclos_necessarios() - 1); // Consome os ciclos necessarios
         System.out.println("Executando "+ p.getNome()  + "(ciclos restantes: " + p.getCiclos_necessarios()+ " )");
         
         if(p.getCiclos_necessarios() <= 0){ // processo terminou
