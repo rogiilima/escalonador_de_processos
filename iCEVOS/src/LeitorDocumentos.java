@@ -14,7 +14,7 @@ public class LeitorDocumentos {
 
 
         try (BufferedReader bufferedReader = new BufferedReader(
-                new FileReader("Disco"))) {
+                new FileReader(args[0]))) {
 
             //Ler linha por linha
 
