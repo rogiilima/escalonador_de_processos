@@ -109,11 +109,11 @@ public class Scheduler {
     }
   
     //Verifica se tem processos ativos nas listas
-    public boolean listasVazias(){
+    public boolean temProcessoAtivo(){
         return !listaAlta.listaVazia() || 
                !listaMedia.listaVazia() || 
                !listaBaixa.listaVazia() || 
                !listaBloqueados.listaVazia();
     }
-    
+
 }
