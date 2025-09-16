@@ -108,4 +108,12 @@ public class Scheduler {
         System.out.println("Fila bloqueados: "+listaBloqueados.getSize()+" processos");
     }
   
+    //Verifica se tem processos ativos nas listas
+    public boolean listasVazias(){
+        return !listaAlta.listaVazia() || 
+               !listaMedia.listaVazia() || 
+               !listaBaixa.listaVazia() || 
+               !listaBloqueados.listaVazia();
+    }
+    
 }
