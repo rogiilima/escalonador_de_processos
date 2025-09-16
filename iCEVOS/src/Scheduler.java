@@ -78,6 +78,8 @@ public class Scheduler {
         }
 
         if("DISCO".equalsIgnoreCase(atual.getRecurso_necessario())){ // ao chamar equalsIgnoreCase evitamos null pointer exception, no caso de atual for null, e ignora caixa alta ou baixa
+            
+
             System.out.println("Processo:"+atual.getNome()+"precisa de DISCO, movendo para bloqueados");
             listaBloqueados.inserirNoFim(atual);
             return;
