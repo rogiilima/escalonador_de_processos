@@ -4,11 +4,12 @@ public class EstruturaProcesso {
     private String nome;
     private int prioridade; // 1 para alta, 2 para média e 3 para baixa
     private int ciclos_necessarios;
-    private String recurso_necessario; // CPU, IO, etc
+    private String recurso_necessario; // CPU, DISCO
+    private boolean jaUsouDisco; // Necessario para bloquear o processo na primeira vez
     
     @Override // adicionando toString sobrescrevendo o metódo e retornando o id + nome + prioridade + ciclos necessários
     public String toString(){
-        return "P ("+ id +", "+ nome +", "+ prioridade+ ", "+ ciclos_necessarios;
+        return "P ("+ id +", "+ nome +", "+ prioridade+ ", "+ ciclos_necessarios + ")";
     }
     
     //Construtor
@@ -18,6 +19,7 @@ public class EstruturaProcesso {
         this.prioridade = prioridade;
         this.ciclos_necessarios = ciclos_necessarios;
         this.recurso_necessario = recurso_necessario;
+        this.jaUsouDisco = false;
     }
 
     public int getId() {
@@ -58,6 +60,16 @@ public class EstruturaProcesso {
 
     public void setRecurso_necessario(String recurso_necessario) {
         this.recurso_necessario = recurso_necessario;
+    }
+
+    public boolean isJaUsouDisco() {
+        return jaUsouDisco;
+    }
+
+    public void setJaUsouDisco(boolean jaUsouDisco) {
+        this.jaUsouDisco = jaUsouDisco;
     }    
+
+    
     
 }
