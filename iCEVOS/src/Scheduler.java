@@ -80,7 +80,7 @@ public class Scheduler {
         if("DISCO".equalsIgnoreCase(atual.getRecurso_necessario()) && !atual.isJaUsouDisco()){ // ao chamar equalsIgnoreCase evitamos null pointer exception, no caso de atual for null, e ignora caixa alta ou baixa
             atual.setJaUsouDisco(true); //  Marca que "usou" na fila de bloqueados
            
-            System.out.println("Processo:"+atual.getNome()+"precisa de DISCO, movendo para bloqueados");
+            System.out.println("Processo: "+atual.getNome()+" precisa de DISCO, movendo para bloqueados");
             listaBloqueados.inserirNoFim(atual);
             return;
         }
@@ -107,21 +107,7 @@ public class Scheduler {
         System.out.println("Fila baixa: "+listaBaixa.getSize()+" processos");
         System.out.println("Fila bloqueados: "+listaBloqueados.getSize()+" processos");
     }
-    public boolean listaAltaVazia() {
-        return listaAlta.listaVazia();
-    }
-
-    public boolean listaMediaVazia() {
-        return listaMedia.listaVazia();
-    }
-
-    public boolean listaBaixaVazia() {
-        return listaBaixa.listaVazia();
-    }
-
-    public boolean listaBloqueadosVazio() {
-        return listaBloqueados.listaVazia();
-    }
+    
   
     //Verifica se tem processos ativos nas listas
     public boolean temProcessoAtivo(){
