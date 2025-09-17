@@ -8,23 +8,18 @@ public class Main {
 
         String caminhoArquivo = args[0];
 
-        Scheduler scheduler = new Scheduler(); // sua classe Scheduler já implementada
+        Scheduler scheduler = new Scheduler(); // cria um scheduler novo
 
 
-        LeitorDocumentos.lerArquivo(caminhoArquivo, scheduler);
+        LeitorDocumentos.lerArquivo(caminhoArquivo, scheduler); //Ler o documento txt
 
         // Executa ciclos até todas as listas ficarem vazias
-        while (true) {
-            scheduler.mostrarFilas(); // usa o método da classe Scheduler
+        while (scheduler.temProcessoAtivo()) {
             scheduler.executarCicloDeCPU();
-
-            // Verifica se todas as listas estão vazias
-            if (scheduler.listaAltaVazia() && scheduler.listaMediaVazia() &&
-                    scheduler.listaBaixaVazia() && scheduler.listaBloqueadosVazio()) {
-                System.out.println("Todos os processos foram executados. Fim da simulação.");
-                break;
-            }
+            scheduler.mostrarFilas(); 
         }
+        // Quando terminar a execução de todos os processos
+        System.out.println("Todos os processos foram executados. Fim da simulação.");
     }
 }
 
