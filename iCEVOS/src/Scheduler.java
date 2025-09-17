@@ -107,6 +107,21 @@ public class Scheduler {
         System.out.println("Fila baixa: "+listaBaixa.getSize()+" processos");
         System.out.println("Fila bloqueados: "+listaBloqueados.getSize()+" processos");
     }
+    public boolean listaAltaVazia() {
+        return listaAlta.listaVazia();
+    }
+
+    public boolean listaMediaVazia() {
+        return listaMedia.listaVazia();
+    }
+
+    public boolean listaBaixaVazia() {
+        return listaBaixa.listaVazia();
+    }
+
+    public boolean listaBloqueadosVazio() {
+        return listaBloqueados.listaVazia();
+    }
   
     //Verifica se tem processos ativos nas listas
     public boolean temProcessoAtivo(){
