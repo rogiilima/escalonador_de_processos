@@ -1,4 +1,4 @@
-# Arquivo de teste para o iCEVOS Scheduler
+# Arquivo de exemplo - iCEVOS Scheduler
 # Formato: id,nome,prioridade,ciclos_necessarios,recurso_necessario
 1,ProcessoA,1,5,CPU
 2,ProcessoB,2,3,DISCO
