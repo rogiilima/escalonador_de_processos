@@ -99,8 +99,9 @@ javac Scheduler.java
 # Execute o programa principal
 java Main [caminho_do_arquivo]
 
-# Exemplo:
+# Exemplo: (caso o arquivo de texto esteja nos mesmo diretório)
 java Main processos.txt
+
 ```
 
 ### 📄 Formato do Arquivo de Entrada
@@ -126,6 +127,7 @@ Para gerar um arquivo de exemplo automaticamente:
 # Execute o LeitorDocumentos isoladamente para criar um exemplo:
 javac LeitorDocumentos.java
 java LeitorDocumentos --exemplo processos.txt
+#O programa indicará o diretório onde será gerado o arquivo
 ```
 
 #### **Estrutura do Arquivo:**
