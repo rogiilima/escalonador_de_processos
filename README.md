@@ -10,9 +10,9 @@
 
 | Nome | Matrícula |
 |------|-----------|
-| Igor Pereira Lima | [INSERIR MATRÍCULA] |
-| João Matheus Ramos Araújo | [INSERIR MATRÍCULA] |
-| Erick Rhuan Carvalho de Freitas Pereira | [INSERIR MATRÍCULA] |
+| Igor Pereira Lima | 
+| João Matheus Ramos Araújo |
+| Erick Rhuan Carvalho de Freitas Pereira | 
 
 ## 🔗 Repositório
 
