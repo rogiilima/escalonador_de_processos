@@ -108,7 +108,7 @@ java Main processos.txt
 
 O arquivo de entrada deve seguir o formato CSV (separado por vírgulas):
 ```
-id,nome,prioridade,ciclos_necessarios,recurso_necessario
+#id,nome,prioridade,ciclos_necessarios,recurso_necessario
 1,ProcessoA,1,5,CPU
 2,ProcessoB,2,3,DISCO
 3,ProcessoC,1,4,CPU
